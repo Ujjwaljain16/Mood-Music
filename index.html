@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Music Player</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mood Music Player</h1>
+            <div class="user-profile">
+                <i class="fa-solid fa-user"></i>
+                <span id="userName">Ujjwal and Shashwat</span>
+            </div>
+        </div>
+        <button id="authButton">Authenticate with Spotify</button>
+        <div class="mood-container">
+            <button class="mood-btn happy" data-mood="happy">Happy</button>
+            <button class="mood-btn sad" data-mood="sad">Sad</button>
+            <button class="mood-btn energetic" data-mood="energetic">Energetic</button>
+            <button class="mood-btn calm" data-mood="calm">Calm</button>
+            
+        </div>
+        <div class="controls">
+                <select id="region" onchange="updateGenres()">
+                        <option value="">🌍 All Regions</option>
+                        <option value="indian">🇮🇳 Indian</option>
+                        <option value="korean">🇰🇷 Korean (K-pop)</option>
+                        <option value="american">🇺🇸 American</option>
+                        <option value="spanish">🇪🇸 Spanish/Latin</option>
+                      </select>
+                </select>
+            </div>
+            <button class="save-playlist" onclick="saveCurrentPlaylist()">Save Playlist to Spotify</button>
+            <div class="filter-controls">
+                <select id="genre" onchange="filterTracks()">
+                        <option value="">🎶 All Genres</option>
+                        <option value="pop">🎤 Pop</option>
+                        <option value="rock">🎸 Rock</option>
+                        <option value="hip-hop">🎧 Hip-Hop</option>
+                        <option value="classical">🎻 Classical</option>
+                    </select>
+                    
+                <div>
+                    <label>Energy Level</label>
+                    <input type="range" id="energy" min="0" max="100" value="50" onchange="filterTracks()">
+                </div>
+                <div>
+                    <label>Tempo</label>
+                    <input type="range" id="tempo" min="0" max="100" value="50" onchange="filterTracks()">
+                </div>
+            </div>
+        </div>
+        <div class="playlist" id="playlist">
+            <div class="loading">Select a mood to get started...</div>
+        </div>
+    </div>
+    <script src="spotify-service.js"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+        }
+        body {
+            background-color: #1e3a5f;
+            min-height: 100vh;
+            padding: 2rem;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .mood-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mood-btn {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            color: #333;
+        }
+
+        .mood-btn:hover {
+            transform: scale(1.05);
+        }
+        select {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          option {
+            padding: 5px;
+          }
+          
+        .happy { background-color: #FFD700; }
+        .sad { background-color: #4682B4; }
+        .energetic { background-color: #FF4500; }
+        .calm { background-color: #98FB98; }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .playlist {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .song {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .song:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .song img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .song-title {
+            font-weight: bold;
+        }
+
+        .song-artist {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .play-btn, .add-btn {
+            background: #1DB954;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .play-btn:hover, .add-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .add-btn {
+            background: #4682B4;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .save-playlist {
+            background: #1DB954;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .save-playlist:hover {
+            background: #1ed760;
+        }
+    /* Add these styles to your existing style.css */
+
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.track:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.track-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.track-details h4 {
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+}
+
+.track-details p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.track-link {
+    background: #1DB954;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.track-link:hover {
+    background: #1ed760;
+    transform: scale(1.05);
+}
+
+.mood-btn.selected {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+}
+
+.filter-controls label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.loading {
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
