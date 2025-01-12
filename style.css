@@ -179,8 +179,6 @@
         .save-playlist:hover {
             background: #1ed760;
         }
-    /* Add these styles to your existing style.css */
-
 .track {
     display: flex;
     justify-content: space-between;

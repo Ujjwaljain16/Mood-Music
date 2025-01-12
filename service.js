@@ -1,8 +1,6 @@
 const LASTFM_API_KEY = '7426f5bb38a6dbdfecb4da36352fab14';
 const LASTFM_API_URL = 'https://ws.audioscrobbler.com/2.0/';
 const DEEZER_API_URL = 'https://api.deezer.com';
-
-// Enhanced mood mappings with regional keywords, focusing on Indian genres
 const moodMappings = {
     happy: {
         tags: ['happy', 'feelgood', 'upbeat'],
@@ -41,10 +39,7 @@ async function fetchRecommendations(mood, genre, region) {
     try {
         const moodData = moodMappings[mood] || moodMappings.happy;
         let tracks = [];
-
-        // Focus on Indian music when the region is Indian or even if region is not specified
         if (region === 'indian' || region === '') {
-            // Always prioritize Indian genres for any mood
             const indianGenres = moodData.regional?.indian || [];
             for (let genre of indianGenres) {
                 let indianTracks = await searchDeezerTracks(genre, genre);
@@ -53,16 +48,11 @@ async function fetchRecommendations(mood, genre, region) {
                 }
                 tracks = [...tracks, ...indianTracks];
             }
-            // Limit to 20 tracks
             tracks = tracks.slice(0, 20);
         }
-
-        // If no tracks found, try to fall back to mood-based general search
         if (tracks.length === 0) {
             tracks = await searchLastFmTracks(moodData.tags[0], genre);
         }
-
-        // Enhance tracks with additional info
         const enhancedTracks = await Promise.all(
             tracks.map(track => enrichTrackInfo(track))
         );
@@ -113,7 +103,6 @@ async function searchLastFmTracks(tag, genre) {
 
 async function enrichTrackInfo(track) {
     try {
-        // Try to get additional track info from Last.fm
         const trackInfo = await fetchTrackInfo(track.name, track.artist.name);
         return { ...track, ...trackInfo };
     } catch (error) {

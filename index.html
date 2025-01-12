@@ -61,7 +61,6 @@
     <script src="service.js"></script>
      <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mood button handlers
             document.querySelectorAll('.mood-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     document.querySelectorAll('.mood-btn').forEach(btn => {
@@ -72,8 +71,6 @@
                     updateRecommendations();
                 });
             });
-
-            // Filter change handlers
             ['genre', 'region'].forEach(filterId => {
                 document.getElementById(filterId).addEventListener('change', updateRecommendations);
             });
@@ -97,8 +94,6 @@
                 });
             }
         }
-
-        // Add enter key support for search
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
