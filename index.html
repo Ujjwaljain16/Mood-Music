@@ -17,7 +17,6 @@
                 <span id="userName">Ujjwal and Shashwat</span>
             </div>
         </div>
-        <button id="authButton">Authenticate with Spotify</button>
         <div class="mood-container">
             <button class="mood-btn happy" data-mood="happy">Happy</button>
             <button class="mood-btn sad" data-mood="sad">Sad</button>
@@ -59,8 +58,52 @@
             <div class="loading">Select a mood to get started...</div>
         </div>
     </div>
-    <script src="spotify-service.js"></script>
-    <script src="config.js"></script>
-    <script src="script.js"></script>
-</body>
+    <script src="service.js"></script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mood button handlers
+            document.querySelectorAll('.mood-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.mood-btn').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    updateRecommendations();
+                });
+            });
+
+            // Filter change handlers
+            ['genre', 'region'].forEach(filterId => {
+                document.getElementById(filterId).addEventListener('change', updateRecommendations);
+            });
+        });
+
+        function updateRecommendations() {
+            const selectedMood = document.querySelector('.mood-btn.selected')?.getAttribute('data-mood');
+            const genre = document.getElementById('genre').value;
+            const region = document.getElementById('region').value;
+
+            if (selectedMood) {
+                fetchRecommendations(selectedMood, genre, region);
+            }
+        }
+
+        function handleSearch() {
+            const searchQuery = document.getElementById('searchInput').value.trim();
+            if (searchQuery) {
+                searchTracks(searchQuery).then(tracks => {
+                    displayRecommendations(tracks);
+                });
+            }
+        }
+
+        // Add enter key support for search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    </script>
+  </script>
 </html>
